@@ -1,0 +1,1612 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Brendin Eaton - photographer, videographer and brand designer. Naples, Florida.">
+<meta name="author" content="Brendin Eaton">
+<meta property="og:title" content="Brendin Eaton">
+<meta property="og:description" content="Photography, motion and brand design. Naples, Florida.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="img/w01.jpg">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230A0B0D'/%3E%3Ctext x='16' y='23' font-family='Georgia,serif' font-size='18' fill='%23E0A040' text-anchor='middle'%3EB%3C/text%3E%3C/svg%3E">
+<style>html{background:#0A0B0D;}*{margin:0;}</style>
+</head>
+<body><title>Brendin Eaton</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=JetBrains+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,300..700;1,6..72,300..500&display=swap">
+
+<style>
+/* ============================================================
+   BRENDIN LEE EATON — portfolio
+   Deliberately single-theme (dark). A photography portfolio needs a
+   constant neutral surround or the frames read differently per viewer,
+   so every colour below is painted explicitly and nothing is inherited
+   from the host page.
+   ============================================================ */
+:root{
+  --void:#0A0B0D;        /* ground: near-black, faint blue bias */
+  --panel:#131519;       /* raised surface */
+  --panel-2:#191C21;
+  --line:#23262C;        /* hairline */
+  --paper:#EDE8DF;       /* warm off-white — matches his tungsten work */
+  --paper-2:#B6B3AC;
+  --dim:#83868D;         /* cool grey, secondary */
+  --dimmer:#787B82;      /* tertiary — still clears AA at 10–11px */
+  --hairtone:#4E5158;    /* decorative marks only, never text */
+  --tungsten:#E0A040;    /* accent, pulled from his own uplighting */
+  --tungsten-soft:rgba(224,160,64,.14);
+  --specter:#2BB3A3;     /* used ONLY where it is the client's real colour */
+
+  --measure:34rem;
+  --gut:clamp(1.25rem,4vw,2.75rem);
+  --rule:1px solid var(--line);
+
+  --f-display:"Archivo","Helvetica Neue",Arial,sans-serif;
+  --f-body:"Newsreader",Georgia,"Times New Roman",serif;
+  --f-mono:"JetBrains Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;
+}
+
+*,*::before,*::after{box-sizing:border-box;}
+
+body{
+  margin:0;
+  background:var(--void);
+  color:var(--paper);
+  font-family:var(--f-body);
+  font-size:1.0625rem;
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+
+/* film grain — one static SVG turbulence, very low opacity */
+body::before{
+  content:"";
+  position:fixed;
+  inset:-50%;
+  z-index:9998;
+  pointer-events:none;
+  opacity:.16;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation:grain 900ms steps(3) infinite;
+}
+@keyframes grain{
+  0%{transform:translate(0,0)}
+  33%{transform:translate(-2%,1%)}
+  66%{transform:translate(1%,-2%)}
+  100%{transform:translate(0,0)}
+}
+
+::selection{background:var(--tungsten);color:var(--void);}
+
+a{color:inherit;}
+img{display:block;max-width:100%;}
+
+:focus-visible{
+  outline:2px solid var(--tungsten);
+  outline-offset:3px;
+  border-radius:2px;
+}
+
+/* ---------- shared type ---------- */
+.eyebrow{
+  font-family:var(--f-mono);
+  font-size:.6875rem;
+  font-weight:500;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  color:var(--dim);
+  margin:0;
+}
+.eyebrow .tick{color:var(--tungsten);}
+
+.h-section{
+  font-family:var(--f-display);
+  font-variation-settings:"wdth" 118,"wght" 700;
+  font-size:clamp(1.75rem,4.2vw,3rem);
+  line-height:1.02;
+  letter-spacing:-.01em;
+  text-transform:uppercase;
+  text-wrap:balance;
+  margin:0;
+}
+
+.lede{
+  font-size:clamp(1.125rem,2vw,1.375rem);
+  line-height:1.55;
+  color:var(--paper-2);
+  max-width:var(--measure);
+  margin:0;
+}
+
+.shell{
+  width:min(100%,86rem);
+  margin-inline:auto;
+  padding-inline:var(--gut);
+}
+
+/* ============================================================
+   TITLE CARD
+   ============================================================ */
+.titlecard{
+  position:relative;
+  min-height:min(100svh,52rem);
+  display:grid;
+  align-content:end;
+  overflow:hidden;
+  border-bottom:var(--rule);
+}
+.plates{position:absolute;inset:0;z-index:0;}
+.plate{
+  position:absolute;inset:0;
+  background-size:cover;
+  background-position:center;
+  opacity:0;
+  transform:scale(1.06);
+  animation:plate 24s linear infinite;
+  filter:saturate(.82) contrast(1.04);
+}
+.plate:nth-child(1){animation-delay:0s}
+.plate:nth-child(2){animation-delay:6s}
+.plate:nth-child(3){animation-delay:12s}
+.plate:nth-child(4){animation-delay:18s}
+@keyframes plate{
+  0%   {opacity:0;transform:scale(1.10)}
+  6%   {opacity:.55}
+  25%  {opacity:.55}
+  31%  {opacity:0}
+  100% {opacity:0;transform:scale(1.02)}
+}
+.plates::after{
+  content:"";position:absolute;inset:0;
+  background:
+    linear-gradient(to top,var(--void) 4%,rgba(10,11,13,.72) 38%,rgba(10,11,13,.34) 70%,rgba(10,11,13,.68) 100%),
+    radial-gradient(120% 80% at 70% 30%,rgba(224,160,64,.10),transparent 60%);
+}
+
+.titlecard__inner{
+  position:relative;z-index:1;
+  padding-block:clamp(3rem,9vw,6rem) clamp(2.5rem,6vw,4rem);
+  display:grid;
+  gap:clamp(1.5rem,3vw,2.25rem);
+}
+
+.wordmark{
+  font-family:var(--f-display);
+  font-variation-settings:"wdth" 125,"wght" 600;
+  font-size:clamp(2.2rem,9.8vw,9.5rem);
+  line-height:.9;
+  letter-spacing:.005em;
+  text-transform:uppercase;
+  margin:0;
+  color:var(--paper);
+}
+.wordmark span{display:block;}
+
+.titlerow{
+  display:flex;flex-wrap:wrap;
+  gap:.75rem clamp(1rem,3vw,2.5rem);
+  align-items:baseline;
+  border-top:var(--rule);
+  padding-top:1.25rem;
+}
+.titlerow .role{
+  font-family:var(--f-display);
+  font-variation-settings:"wdth" 100,"wght" 500;
+  font-size:clamp(.95rem,1.5vw,1.15rem);
+  letter-spacing:.02em;
+  text-transform:uppercase;
+  margin:0;
+}
+.titlerow .role em{font-style:normal;color:var(--tungsten);}
+
+.scrollcue{
+  font-family:var(--f-mono);
+  font-size:.6875rem;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--dim);
+  display:inline-flex;align-items:center;gap:.6rem;
+  text-decoration:none;
+}
+.scrollcue::after{
+  content:"";width:2.5rem;height:1px;background:var(--tungsten);
+  transform-origin:left;animation:cue 2.4s ease-in-out infinite;
+}
+@keyframes cue{0%,100%{transform:scaleX(.35)}50%{transform:scaleX(1)}}
+
+/* ============================================================
+   STATEMENT
+   ============================================================ */
+.statement{
+  padding-block:clamp(3.5rem,9vw,7rem);
+  border-bottom:var(--rule);
+}
+.statement__grid{
+  display:grid;
+  gap:clamp(1.75rem,4vw,3.5rem);
+  grid-template-columns:1fr;
+}
+@media (min-width:60rem){
+  .statement__grid{grid-template-columns:minmax(0,13rem) minmax(0,1fr);}
+}
+.statement p{
+  font-size:clamp(1.25rem,2.5vw,1.85rem);
+  line-height:1.45;
+  margin:0 0 1.15em;
+  max-width:38rem;
+  color:var(--paper);
+}
+.statement p:last-child{margin-bottom:0;color:var(--paper-2);font-size:clamp(1.05rem,1.7vw,1.25rem);}
+.statement em{font-style:italic;color:var(--tungsten);}
+
+/* ---------- figures strip ---------- */
+.figures{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  border-top:var(--rule);
+}
+@media (min-width:48rem){.figures{grid-template-columns:repeat(4,minmax(0,1fr));}}
+.figure{
+  padding:clamp(1.25rem,3vw,2rem) var(--gut);
+  border-right:var(--rule);
+  border-bottom:var(--rule);
+}
+@media (min-width:48rem){.figure{border-bottom:none;}}
+.figure:last-child{border-right:none;}
+.figure dt{
+  font-family:var(--f-mono);
+  font-size:.625rem;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--dim);margin:0 0 .5rem;
+}
+.figure dd{
+  margin:0;
+  font-family:var(--f-display);
+  font-variation-settings:"wdth" 110,"wght" 600;
+  font-size:clamp(1.35rem,3vw,2.1rem);
+  line-height:1;
+  font-variant-numeric:tabular-nums;
+}
+.figure dd small{
+  display:block;
+  font-family:var(--f-body);
+  font-variation-settings:normal;
+  font-size:.8125rem;
+  font-weight:400;
+  letter-spacing:0;
+  color:var(--dim);
+  margin-top:.5rem;
+  line-height:1.4;
+}
+
+/* ============================================================
+   SECTION HEADERS
+   ============================================================ */
+.sectionhead{
+  padding-block:clamp(3rem,7vw,5.5rem) clamp(1.5rem,3vw,2.5rem);
+  display:grid;gap:1rem;
+}
+.sectionhead .h-section{max-width:22ch;}
+.sectionhead .note{
+  max-width:var(--measure);
+  color:var(--dim);
+  margin:0;
+  font-size:1rem;
+}
+
+/* ============================================================
+   REEL — a project. The slate carries real shoot metadata.
+   ============================================================ */
+.reel{
+  border-top:var(--rule);
+  padding-block:clamp(2.5rem,6vw,4.5rem);
+}
+.reel__top{
+  display:grid;
+  gap:clamp(1.25rem,3vw,2.5rem);
+  align-items:start;
+  margin-bottom:clamp(1.5rem,3.5vw,2.5rem);
+}
+@media (min-width:62rem){
+  .reel__top{grid-template-columns:minmax(0,1fr) minmax(0,20rem);}
+}
+.reel__title{
+  font-family:var(--f-display);
+  font-variation-settings:"wdth" 112,"wght" 650;
+  font-size:clamp(1.5rem,3.4vw,2.4rem);
+  line-height:1.05;
+  text-transform:uppercase;
+  letter-spacing:-.005em;
+  margin:.5rem 0 .75rem;
+}
+.reel__blurb{
+  margin:0;color:var(--paper-2);max-width:var(--measure);
+  font-size:1.0625rem;
+}
+
+/* the slate: mono key/value pairs, like a camera report */
+.slate{
+  border:var(--rule);
+  background:var(--panel);
+  padding:1rem 1.15rem;
+  display:grid;
+  gap:.55rem;
+  font-family:var(--f-mono);
+  font-size:.6875rem;
+  letter-spacing:.04em;
+}
+.slate div{
+  display:grid;
+  grid-template-columns:6.5rem minmax(0,1fr);
+  gap:.75rem;
+  align-items:baseline;
+}
+.slate dt{color:var(--dim);text-transform:uppercase;letter-spacing:.14em;margin:0;}
+.slate dd{margin:0;color:var(--paper-2);}
+.slate dd b{color:var(--tungsten);font-weight:500;}
+
+/* ---------- grids ---------- */
+.grid{
+  display:grid;
+  gap:clamp(.5rem,1.2vw,.9rem);
+  grid-template-columns:repeat(2,minmax(0,1fr));
+}
+@media (min-width:48rem){.grid{grid-template-columns:repeat(6,minmax(0,1fr));}}
+.grid .full{grid-column:1 / -1;}
+@media (min-width:48rem){
+  .g2{grid-column:span 2;}
+  .g3{grid-column:span 3;}
+  .g4{grid-column:span 4;}
+}
+
+/* ---------- frame (an image button) ---------- */
+.frame{
+  position:relative;
+  display:block;
+  width:100%;
+  padding:0;
+  border:0;
+  margin:0;
+  background:var(--panel-2);
+  cursor:zoom-in;
+  overflow:hidden;
+  font:inherit;
+  color:inherit;
+  -webkit-tap-highlight-color:transparent;
+}
+.frame img{
+  width:100%;height:100%;
+  object-fit:cover;
+  transition:transform .7s cubic-bezier(.2,.6,.2,1),filter .5s ease;
+}
+.frame::after{
+  content:"";
+  position:absolute;inset:0;
+  box-shadow:inset 0 0 0 1px rgba(237,232,223,.07);
+  pointer-events:none;
+  transition:box-shadow .35s ease;
+}
+.frame:hover img,.frame:focus-visible img{transform:scale(1.035);}
+.frame:hover::after,.frame:focus-visible::after{box-shadow:inset 0 0 0 1px rgba(224,160,64,.55);}
+.frame .cap{
+  position:absolute;
+  left:0;right:0;bottom:0;
+  padding:2.25rem .75rem .6rem;
+  font-family:var(--f-mono);
+  font-size:.625rem;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  text-align:left;
+  color:var(--paper);
+  background:linear-gradient(to top,rgba(10,11,13,.88),transparent);
+  opacity:0;
+  transition:opacity .3s ease;
+}
+.frame:hover .cap,.frame:focus-visible .cap{opacity:1;}
+/* design assets keep their own ground rather than being cropped */
+.frame--contain{background:var(--panel-2);}
+.frame--contain img{object-fit:contain;}
+
+/* ============================================================
+   BRAND SECTION — accent shifts to the clients' own teal
+   ============================================================ */
+.brandzone{
+  background:
+    linear-gradient(to bottom,rgba(43,179,163,.05),transparent 30%),
+    var(--void);
+  border-top:var(--rule);
+}
+.brandzone .slate dd b{color:var(--specter);}
+.brandzone .frame:hover::after,.brandzone .frame:focus-visible::after{box-shadow:inset 0 0 0 1px rgba(43,179,163,.6);}
+.brandzone .eyebrow .tick{color:var(--specter);}
+
+/* ============================================================
+   CAPABILITY / CREDITS
+   ============================================================ */
+.cols{
+  display:grid;
+  gap:clamp(1.75rem,4vw,3rem);
+  grid-template-columns:1fr;
+  padding-block:clamp(2.5rem,6vw,4rem);
+  border-top:var(--rule);
+}
+@media (min-width:56rem){.cols--3{grid-template-columns:repeat(3,minmax(0,1fr));}}
+@media (min-width:56rem){.cols--2{grid-template-columns:minmax(0,1fr) minmax(0,1fr);}}
+
+.craft h3{
+  font-family:var(--f-mono);
+  font-size:.6875rem;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--tungsten);
+  margin:0 0 1rem;
+  padding-bottom:.65rem;
+  border-bottom:var(--rule);
+  font-weight:500;
+}
+.craft ul{list-style:none;margin:0;padding:0;display:grid;gap:.6rem;}
+.craft li{
+  display:grid;grid-template-columns:auto minmax(0,1fr);gap:.7rem;
+  font-size:.9375rem;line-height:1.45;color:var(--paper-2);
+}
+.craft li::before{
+  content:"";
+  width:.3rem;height:.3rem;
+  margin-top:.62em;
+  background:var(--hairtone);
+  transform:rotate(45deg);
+}
+
+/* ---------- history ---------- */
+.history{list-style:none;margin:0;padding:0;}
+.history li{
+  display:grid;
+  gap:.15rem .9rem;
+  padding:1rem 0;
+  border-bottom:var(--rule);
+  grid-template-columns:1fr;
+}
+@media (min-width:34rem){
+  .history li{grid-template-columns:9.5rem minmax(0,1fr);}
+}
+.history li:first-child{border-top:var(--rule);}
+.history .when{
+  font-family:var(--f-mono);font-size:.6875rem;letter-spacing:.08em;
+  color:var(--dim);text-transform:uppercase;padding-top:.35em;
+  font-variant-numeric:tabular-nums;
+}
+.history .what{margin:0;}
+.history .what strong{
+  display:block;
+  font-family:var(--f-display);
+  font-variation-settings:"wdth" 105,"wght" 600;
+  font-size:1rem;letter-spacing:.005em;text-transform:uppercase;
+  color:var(--paper);
+}
+.history .what span{
+  display:block;font-size:.9375rem;color:var(--dim);
+}
+.history li.is-creative .what strong{color:var(--tungsten);}
+
+/* ---------- client roster ---------- */
+.roster{
+  display:flex;flex-wrap:wrap;gap:.5rem;
+  list-style:none;margin:0;padding:0;
+}
+.roster li{
+  font-family:var(--f-mono);
+  font-size:.6875rem;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--paper-2);
+  border:var(--rule);
+  padding:.5rem .75rem;
+  background:var(--panel);
+}
+
+/* ============================================================
+   CONTACT
+   ============================================================ */
+.contact{
+  border-top:var(--rule);
+  padding-block:clamp(3.5rem,9vw,7rem);
+}
+.contact__big{
+  font-family:var(--f-display);
+  font-variation-settings:"wdth" 122,"wght" 600;
+  font-size:clamp(1.9rem,7.5vw,5.5rem);
+  line-height:.98;
+  text-transform:uppercase;
+  margin:0 0 clamp(1.5rem,4vw,2.5rem);
+  text-wrap:balance;
+}
+/* ---------- enquiry form ---------- */
+.enquiry{
+  display:grid;
+  gap:clamp(1rem,2.2vw,1.5rem);
+  max-width:46rem;
+}
+.enquiry__row{
+  display:grid;
+  gap:clamp(1rem,2.2vw,1.5rem);
+  grid-template-columns:1fr;
+}
+@media (min-width:38rem){
+  .enquiry__row{grid-template-columns:repeat(2,minmax(0,1fr));}
+}
+
+.field{
+  display:grid;
+  gap:.5rem;
+  margin:0;
+}
+.field label{
+  font-family:var(--f-mono);
+  font-size:.6875rem;
+  font-weight:500;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+  color:var(--dim);
+}
+.field input,
+.field select,
+.field textarea{
+  font-family:var(--f-body);
+  font-size:1rem;
+  line-height:1.5;
+  color:var(--paper);
+  background:var(--panel);
+  border:var(--rule);
+  border-radius:0;
+  padding:.75rem .85rem;
+  width:100%;
+  transition:border-color .2s ease,background-color .2s ease;
+  -webkit-appearance:none;
+  appearance:none;
+}
+.field textarea{resize:vertical;min-height:7rem;}
+.field select{
+  /* own chevron, since appearance is stripped */
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%2383868D' stroke-width='1.5'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;
+  background-position:right .9rem center;
+  padding-right:2.4rem;
+  cursor:pointer;
+}
+.field select option{background:var(--panel);color:var(--paper);}
+.field input::placeholder,
+.field textarea::placeholder{color:var(--dim);opacity:1;}
+.field input:hover,
+.field select:hover,
+.field textarea:hover{border-color:var(--hairtone);}
+.field input:focus,
+.field select:focus,
+.field textarea:focus{
+  outline:none;
+  border-color:var(--tungsten);
+  background:var(--panel-2);
+}
+.field input:focus-visible,
+.field select:focus-visible,
+.field textarea:focus-visible{outline:2px solid var(--tungsten);outline-offset:2px;}
+
+.field__err{
+  font-family:var(--f-mono);
+  font-size:.625rem;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  color:#E8746A;
+  min-height:0;
+}
+.field.is-bad input,
+.field.is-bad textarea{border-color:#E8746A;}
+
+.enquiry__foot{
+  display:flex;
+  flex-wrap:wrap;
+  gap:.75rem;
+  align-items:center;
+}
+.btn{
+  font-family:var(--f-mono);
+  font-size:.75rem;
+  font-weight:500;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  padding:.9rem 1.5rem;
+  border:1px solid transparent;
+  border-radius:0;
+  cursor:pointer;
+  transition:background-color .2s ease,color .2s ease,border-color .2s ease;
+}
+.btn--primary{background:var(--tungsten);color:var(--void);}
+.btn--primary:hover{background:var(--paper);}
+.btn--primary:disabled{background:var(--hairtone);color:var(--panel);cursor:default;}
+.btn--ghost{background:transparent;color:var(--paper-2);border-color:var(--line);}
+.btn--ghost:hover{border-color:var(--tungsten);color:var(--tungsten);}
+.btn[hidden]{display:none;}
+
+.enquiry__status{
+  margin:0;
+  min-height:1.4em;
+  font-family:var(--f-mono);
+  font-size:.6875rem;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  color:var(--dim);
+}
+.enquiry__status.is-good{color:var(--tungsten);}
+.enquiry__status.is-bad{color:#E8746A;}
+
+.colophon{
+  border-top:var(--rule);
+  padding-block:1.5rem 2.5rem;
+  display:flex;flex-wrap:wrap;gap:.75rem 2rem;justify-content:space-between;
+  font-family:var(--f-mono);
+  font-size:.625rem;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--dimmer);
+}
+
+/* ============================================================
+   LIGHTBOX
+   ============================================================ */
+.lb{
+  position:fixed;inset:0;z-index:9999;
+  background:rgba(6,7,8,.96);
+  display:none;
+  place-items:center;
+  padding:clamp(.75rem,3vw,2.5rem);
+}
+.lb[data-open="true"]{display:grid;}
+.lb__stage{
+  display:grid;
+  gap:1rem;
+  justify-items:center;
+  max-width:100%;
+  max-height:100%;
+}
+.lb__img{
+  max-width:min(100%,80rem);
+  max-height:78svh;
+  width:auto;height:auto;
+  object-fit:contain;
+  background:var(--panel);
+}
+.lb__meta{
+  font-family:var(--f-mono);
+  font-size:.6875rem;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--dim);
+  text-align:center;
+  display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;
+}
+.lb__meta b{color:var(--paper-2);font-weight:400;}
+.lb__meta .n{color:var(--tungsten);font-variant-numeric:tabular-nums;}
+.lb button{
+  position:absolute;
+  background:transparent;
+  border:var(--rule);
+  color:var(--paper);
+  font-family:var(--f-mono);
+  font-size:1rem;
+  width:2.75rem;height:2.75rem;
+  display:grid;place-items:center;
+  cursor:pointer;
+  transition:border-color .2s ease,color .2s ease;
+}
+.lb button:hover{border-color:var(--tungsten);color:var(--tungsten);}
+.lb__close{top:clamp(.75rem,3vw,1.75rem);right:clamp(.75rem,3vw,1.75rem);}
+.lb__prev{left:clamp(.5rem,2vw,1.75rem);top:50%;transform:translateY(-50%);}
+.lb__next{right:clamp(.5rem,2vw,1.75rem);top:50%;transform:translateY(-50%);}
+body.lb-open{overflow:hidden;}
+
+/* ============================================================
+   REVEAL + REDUCED MOTION
+   ============================================================ */
+.rv{opacity:0;transform:translateY(14px);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.6,.2,1);}
+.rv.in{opacity:1;transform:none;}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{
+    animation-duration:.001ms !important;
+    animation-iteration-count:1 !important;
+    transition-duration:.001ms !important;
+  }
+  .plate:nth-child(1){opacity:.5;transform:none;}
+  .plate:nth-child(n+2){opacity:0;}
+  .rv{opacity:1;transform:none;}
+  body::before{animation:none;}
+}
+</style>
+
+<!-- ============================== TITLE CARD ============================== -->
+<header class="titlecard">
+  <div class="plates" aria-hidden="true">
+    <div class="plate" style="background-image:url(img/w01.jpg)"></div>
+    <div class="plate" style="background-image:url(img/m01.jpg)"></div>
+    <div class="plate" style="background-image:url(img/p01.jpg)"></div>
+    <div class="plate" style="background-image:url(img/r01.jpg)"></div>
+  </div>
+
+  <div class="titlecard__inner shell">
+    <p class="eyebrow"><span class="tick">&#9679;</span> Naples, Florida &nbsp;/&nbsp; Stills, Motion &amp; Brand &nbsp;/&nbsp; Open to commissions</p>
+
+    <h1 class="wordmark">
+      <span>Brendin</span>
+      <span>Eaton</span>
+    </h1>
+
+    <div class="titlerow">
+      <p class="role">Photographer <em>&#47;</em> Videographer <em>&#47;</em> Brand Designer</p>
+      <a class="scrollcue" href="#statement">Roll the reel</a>
+    </div>
+  </div>
+</header>
+
+<!-- ============================== STATEMENT ============================== -->
+<section class="statement" id="statement">
+  <div class="shell statement__grid">
+    <p class="eyebrow">Statement</p>
+    <div>
+      <p class="rv">I work in two temperatures. One is <em>available light</em> &mdash; a bride under tungsten, an executive at a tall window, a rapper leaning into the booth at two in the morning. You get one pass at it and the room decides most of the exposure.</p>
+      <p class="rv">The other is <em>engineered</em> &mdash; vector marks, jersey panels, tournament key art built to survive at forty pixels on a phone. Nothing is found; every edge is a decision.</p>
+      <p class="rv">Same eye. Different physics. The work below is sorted that way on purpose.</p>
+    </div>
+  </div>
+
+  <dl class="figures">
+    <div class="figure">
+      <dt>Working since</dt>
+      <dd>2018<small>First paid commission &mdash; apparel campaign</small></dd>
+    </div>
+    <div class="figure">
+      <dt>Disciplines</dt>
+      <dd>03<small>Photography, motion, brand identity</small></dd>
+    </div>
+    <div class="figure">
+      <dt>Frames here</dt>
+      <dd>57<small>Cut from an archive of several thousand</small></dd>
+    </div>
+    <div class="figure">
+      <dt>Trained in</dt>
+      <dd>BBA<small>Marketing &amp; Communications, Radford University</small></dd>
+    </div>
+  </dl>
+</section>
+
+<!-- ============================== PHOTOGRAPHY ============================== -->
+<div class="shell sectionhead">
+  <p class="eyebrow"><span class="tick">&#9679;</span> Part One &mdash; Available Light</p>
+  <h2 class="h-section">Photography</h2>
+  <p class="note">Four commissions and a set of loose frames. Every slate below is the real shoot record &mdash; where it was, what it was for, what came out of it.</p>
+</div>
+
+<div class="shell">
+
+  <!-- REEL: Sophia Nelson -->
+  <section class="reel">
+    <div class="reel__top">
+      <div>
+        <p class="eyebrow">Editorial portraiture</p>
+        <h3 class="reel__title">Sophia Nelson</h3>
+        <p class="reel__blurb">An author and commentator, photographed across six rooms of one historic house in a single afternoon. No strobes &mdash; each frame is placed against a window and the sitter is turned until the light does the modelling.</p>
+      </div>
+      <dl class="slate">
+        <div><dt>Client</dt><dd>Sophia A. Nelson</dd></div>
+        <div><dt>Brief</dt><dd>Author &amp; speaking portraits</dd></div>
+        <div><dt>Location</dt><dd>Virginia, US</dd></div>
+        <div><dt>Date</dt><dd>September 2019</dd></div>
+        <div><dt>Light</dt><dd><b>Available only</b></dd></div>
+        <div><dt>Selects</dt><dd>7 of 140</dd></div>
+      </dl>
+    </div>
+    <div class="grid">
+      <button class="frame full" data-lb="p01" style="aspect-ratio:1800/1343">
+        <img src="img/p01.jpg" alt="Sophia Nelson in profile at a window, warm daylight raking across her face" loading="lazy">
+        <span class="cap">Window turn &mdash; the frame the whole set was built around</span>
+      </button>
+      <button class="frame g2" data-lb="p04" style="aspect-ratio:1120/1400">
+        <img src="img/p04.jpg" alt="Seated portrait in a leather jacket against dark panelling" loading="lazy">
+        <span class="cap">Study, north light</span>
+      </button>
+      <button class="frame g2" data-lb="p03" style="aspect-ratio:1120/1400">
+        <img src="img/p03.jpg" alt="Portrait seated in an upholstered armchair" loading="lazy">
+        <span class="cap">Drawing room</span>
+      </button>
+      <button class="frame g2" data-lb="p07" style="aspect-ratio:960/1200">
+        <img src="img/p07.jpg" alt="Full-length portrait on a staircase landing" loading="lazy">
+        <span class="cap">Staircase, full length</span>
+      </button>
+      <button class="frame g3" data-lb="p02" style="aspect-ratio:1200/960">
+        <img src="img/p02.jpg" alt="Portrait at a library table with bookshelves behind" loading="lazy">
+        <span class="cap">Library table</span>
+      </button>
+      <button class="frame g3" data-lb="p06" style="aspect-ratio:1400/977">
+        <img src="img/p06.jpg" alt="Portrait beside a bright window in a purple dress" loading="lazy">
+        <span class="cap">High key, hands down</span>
+      </button>
+      <button class="frame g2" data-lb="p05" style="aspect-ratio:800/1200">
+        <img src="img/p05.jpg" alt="Black and white frame walking a garden path" loading="lazy">
+        <span class="cap">Monochrome, garden path</span>
+      </button>
+    </div>
+  </section>
+
+  <!-- REEL: Campo Wedding -->
+  <section class="reel">
+    <div class="reel__top">
+      <div>
+        <p class="eyebrow">Wedding &amp; event</p>
+        <h3 class="reel__title">The Campo Wedding</h3>
+        <p class="reel__blurb">A full day covered on two bodies &mdash; a Nikon for the room, a Lumix on the aisle. The venue was lit in amber uplight and nothing about that was negotiable, so the whole grade was built to sit inside it rather than fight it.</p>
+      </div>
+      <dl class="slate">
+        <div><dt>Client</dt><dd>Wedding Venue</dd></div>
+        <div><dt>Brief</dt><dd>Full-day documentary coverage</dd></div>
+        <div><dt>Bodies</dt><dd>Nikon DSLR + Lumix</dd></div>
+        <div><dt>Date</dt><dd>November 2025</dd></div>
+        <div><dt>Light</dt><dd><b>Venue uplight</b></dd></div>
+        <div><dt>Selects</dt><dd>7 of 108</dd></div>
+      </dl>
+    </div>
+    <div class="grid">
+      <button class="frame full" data-lb="w01" style="aspect-ratio:1500/1400">
+        <img src="img/w01.jpg" alt="Bride and groom exchanging vows beneath an autumn arch in amber light" loading="lazy">
+        <span class="cap">Vows &mdash; the arch, the uplight, the whole reason for the grade</span>
+      </button>
+      <button class="frame g3" data-lb="w02" style="aspect-ratio:1400/1000">
+        <img src="img/w02.jpg" alt="The first kiss under the ceremony arch" loading="lazy">
+        <span class="cap">First kiss</span>
+      </button>
+      <button class="frame g3" data-lb="w04" style="aspect-ratio:1400/1000">
+        <img src="img/w04.jpg" alt="Guests embracing after the ceremony" loading="lazy">
+        <span class="cap">After &mdash; the part nobody poses for</span>
+      </button>
+      <button class="frame g2" data-lb="w05" style="aspect-ratio:1000/1400">
+        <img src="img/w05.jpg" alt="The bride alone beneath the arch" loading="lazy">
+        <span class="cap">Bride, alone, thirty seconds</span>
+      </button>
+      <button class="frame g2" data-lb="w03" style="aspect-ratio:1400/1000">
+        <img src="img/w03.jpg" alt="Bride walking the aisle carrying an autumn bouquet" loading="lazy">
+        <span class="cap">The walk</span>
+      </button>
+      <button class="frame g2" data-lb="w06" style="aspect-ratio:1400/904">
+        <img src="img/w06.jpg" alt="Wide frame of the ceremony from the back of the room" loading="lazy">
+        <span class="cap">Room wide</span>
+      </button>
+      <button class="frame full" data-lb="w07" style="aspect-ratio:1400/788">
+        <img src="img/w07.jpg" alt="The empty ceremony room lit in amber before guests arrive" loading="lazy">
+        <span class="cap">Empty room, before &mdash; scouted an hour early to set the grade</span>
+      </button>
+    </div>
+  </section>
+
+  <!-- REEL: Cabrisses -->
+  <section class="reel">
+    <div class="reel__top">
+      <div>
+        <p class="eyebrow">Commercial &amp; product</p>
+        <h3 class="reel__title">Cabrisses Co.</h3>
+        <p class="reel__blurb">An apparel launch that needed both halves of the funnel: clean cut-outs a store page can drop straight into a grid, and on-course action that gives the garment a reason to exist. Shot in one day, two setups, one athlete.</p>
+      </div>
+      <dl class="slate">
+        <div><dt>Client</dt><dd>Cabrisses Co.</dd></div>
+        <div><dt>Brief</dt><dd>Golf apparel launch</dd></div>
+        <div><dt>Deliver</dt><dd>E-comm + lifestyle</dd></div>
+        <div><dt>Date</dt><dd>June 2018</dd></div>
+        <div><dt>Setups</dt><dd><b>Studio + course</b></dd></div>
+        <div><dt>Selects</dt><dd>5 of 38</dd></div>
+      </dl>
+    </div>
+    <div class="grid">
+      <button class="frame g4" data-lb="c03" style="aspect-ratio:1200/1105">
+        <img src="img/c03.jpg" alt="Golfer at the top of a backswing on the tee in patterned apparel" loading="lazy">
+        <span class="cap">Top of the backswing &mdash; the hero for the campaign</span>
+      </button>
+      <button class="frame g2" data-lb="c01" style="aspect-ratio:1197/1200">
+        <img src="img/c01.jpg" alt="Product cut-out of the polo on a white background" loading="lazy">
+        <span class="cap">E-comm cut-out</span>
+      </button>
+      <button class="frame g2" data-lb="c02" style="aspect-ratio:811/1200">
+        <img src="img/c02.jpg" alt="Full-length product shot of the polo on white" loading="lazy">
+        <span class="cap">Full length, white</span>
+      </button>
+      <button class="frame g2" data-lb="c04" style="aspect-ratio:811/1200">
+        <img src="img/c04.jpg" alt="Studio portrait against black showing the collar detail" loading="lazy">
+        <span class="cap">Collar detail, black</span>
+      </button>
+      <button class="frame g2" data-lb="c05" style="aspect-ratio:1197/1200">
+        <img src="img/c05.jpg" alt="Three-quarter studio frame against black" loading="lazy">
+        <span class="cap">Three-quarter</span>
+      </button>
+    </div>
+  </section>
+
+  <!-- REEL: 117 Records -->
+  <section class="reel">
+    <div class="reel__top">
+      <div>
+        <p class="eyebrow">Documentary</p>
+        <h3 class="reel__title">117 Records</h3>
+        <p class="reel__blurb">Two nights inside a home studio while a label cut vocals. The only lights in the room were a string of bulbs and the monitor glow, and I shot it that way &mdash; then pulled every artist into the hallway at the end for a flat, straight-on portrait.</p>
+      </div>
+      <dl class="slate">
+        <div><dt>Client</dt><dd>117 Records</dd></div>
+        <div><dt>Brief</dt><dd>Session documentation</dd></div>
+        <div><dt>Location</dt><dd>Home studio</dd></div>
+        <div><dt>Date</dt><dd>February 2019</dd></div>
+        <div><dt>Light</dt><dd><b>String bulbs only</b></dd></div>
+        <div><dt>Selects</dt><dd>6 of 134</dd></div>
+      </dl>
+    </div>
+    <div class="grid">
+      <button class="frame g3" data-lb="m01" style="aspect-ratio:1500/1000">
+        <img src="img/m01.jpg" alt="Artist tracking vocals in a booth lit blue by monitor glow" loading="lazy">
+        <span class="cap">Tracking, monitor glow</span>
+      </button>
+      <button class="frame g3" data-lb="m02" style="aspect-ratio:1400/933">
+        <img src="img/m02.jpg" alt="Artist in profile at the microphone under warm string lights" loading="lazy">
+        <span class="cap">Take four, string bulbs</span>
+      </button>
+      <button class="frame g2" data-lb="m03" style="aspect-ratio:1200/800">
+        <img src="img/m03.jpg" alt="Straight-on hallway portrait of an artist in a hooded top" loading="lazy">
+        <span class="cap">Hallway portrait, I</span>
+      </button>
+      <button class="frame g2" data-lb="m04" style="aspect-ratio:1200/800">
+        <img src="img/m04.jpg" alt="Straight-on hallway portrait of an artist" loading="lazy">
+        <span class="cap">Hallway portrait, II</span>
+      </button>
+      <button class="frame g2" data-lb="m05" style="aspect-ratio:1200/800">
+        <img src="img/m05.jpg" alt="Straight-on hallway portrait of an artist in a red hoodie" loading="lazy">
+        <span class="cap">Hallway portrait, III</span>
+      </button>
+      <button class="frame full" data-lb="m06" style="aspect-ratio:1400/933">
+        <img src="img/m06.jpg" alt="Artist exhaling smoke lit from behind by string lights" loading="lazy">
+        <span class="cap">Backlit exhale &mdash; last frame of the second night</span>
+      </button>
+    </div>
+  </section>
+
+  <!-- REEL: loose frames -->
+  <section class="reel">
+    <div class="reel__top">
+      <div>
+        <p class="eyebrow">Selected frames</p>
+        <h3 class="reel__title">Portraits &amp; Still Life</h3>
+        <p class="reel__blurb">Loose work from seven years &mdash; graduation sittings, lifestyle sessions, a dancer against a Virginia sky, and the still-life exercises I use to stay honest about light when nobody is paying me to be.</p>
+      </div>
+      <dl class="slate">
+        <div><dt>Client</dt><dd>Various &amp; personal</dd></div>
+        <div><dt>Brief</dt><dd>Portrait, lifestyle, still life</dd></div>
+        <div><dt>Span</dt><dd>2018 &ndash; 2025</dd></div>
+        <div><dt>Bodies</dt><dd>Nikon, Lumix</dd></div>
+        <div><dt>Note</dt><dd><b>Unbriefed work</b></dd></div>
+        <div><dt>Selects</dt><dd>13</dd></div>
+      </dl>
+    </div>
+    <div class="grid">
+      <button class="frame g2" data-lb="g02" style="aspect-ratio:1400/1041">
+        <img src="img/g02.jpg" alt="Black and white frame of a graduate walking away down a long corridor" loading="lazy">
+        <span class="cap">Corridor, monochrome</span>
+      </button>
+      <button class="frame g2" data-lb="g01" style="aspect-ratio:1200/1009">
+        <img src="img/g01.jpg" alt="Graduate walking a sunlit corridor in cap and gown" loading="lazy">
+        <span class="cap">Corridor, walking out</span>
+      </button>
+      <button class="frame g2" data-lb="g03" style="aspect-ratio:1034/1200">
+        <img src="img/g03.jpg" alt="Graduate framed in a bright corridor" loading="lazy">
+        <span class="cap">Last building on campus</span>
+      </button>
+      <button class="frame g2" data-lb="r01" style="aspect-ratio:1600/1236">
+        <img src="img/r01.jpg" alt="Dancer spinning in a green gown against an open sky" loading="lazy">
+        <span class="cap">Skirt at full extension &mdash; one of eleven passes</span>
+      </button>
+      <button class="frame g2" data-lb="g04" style="aspect-ratio:1200/966">
+        <img src="img/g04.jpg" alt="Backlit portrait of a graduate with hair catching the sun" loading="lazy">
+        <span class="cap">Backlit, 4pm</span>
+      </button>
+      <button class="frame g2" data-lb="i01" style="aspect-ratio:960/1200">
+        <img src="img/i01.jpg" alt="Portrait holding a sunflower in a field" loading="lazy">
+        <span class="cap">Sunflower field</span>
+      </button>
+      <button class="frame g3" data-lb="i03" style="aspect-ratio:905/1200">
+        <img src="img/i03.jpg" alt="Black and white multiplicity composite of the same man four times in a doorway" loading="lazy">
+        <span class="cap">Multiplicity composite &mdash; four passes, one tripod</span>
+      </button>
+      <button class="frame g3" data-lb="s01" style="aspect-ratio:1200/926">
+        <img src="img/s01.jpg" alt="Black and white lifestyle portrait seated on stone" loading="lazy">
+        <span class="cap">Monochrome, seated</span>
+      </button>
+      <button class="frame g2" data-lb="s02" style="aspect-ratio:1200/966">
+        <img src="img/s02.jpg" alt="Lifestyle portrait against green hedging" loading="lazy">
+        <span class="cap">Hedge, midday</span>
+      </button>
+      <button class="frame g2" data-lb="g05" style="aspect-ratio:1400/933">
+        <img src="img/g05.jpg" alt="Portrait against a waterfall thrown out of focus" loading="lazy">
+        <span class="cap">Waterfall, wide open</span>
+      </button>
+      <button class="frame g2" data-lb="r02" style="aspect-ratio:1400/1024">
+        <img src="img/r02.jpg" alt="Candid portrait in late afternoon light" loading="lazy">
+        <span class="cap">Late light, candid</span>
+      </button>
+      <button class="frame g3" data-lb="i02" style="aspect-ratio:1080/720">
+        <img src="img/i02.jpg" alt="Black and white study of an open hand" loading="lazy">
+        <span class="cap">Hand study</span>
+      </button>
+      <button class="frame g3" data-lb="i04" style="aspect-ratio:1080/867">
+        <img src="img/i04.jpg" alt="Still life of a longboard deck and trucks" loading="lazy">
+        <span class="cap">Deck &amp; trucks, still life</span>
+      </button>
+    </div>
+  </section>
+</div>
+
+<!-- ============================== BRAND & MOTION ============================== -->
+<div class="brandzone">
+  <div class="shell sectionhead">
+    <p class="eyebrow"><span class="tick">&#9679;</span> Part Two &mdash; Engineered</p>
+    <h2 class="h-section">Brand &amp; Motion</h2>
+    <p class="note">Identity systems, cut-and-sew apparel, campaign key art and broadcast packaging &mdash; mostly for competitive gaming, where a mark has to hold up on a jersey, a stream overlay and a 40-pixel avatar at the same time.</p>
+  </div>
+
+  <div class="shell">
+
+    <!-- Specter -->
+    <section class="reel">
+      <div class="reel__top">
+        <div>
+          <p class="eyebrow">Identity &amp; apparel</p>
+          <h3 class="reel__title">Specter Esports</h3>
+          <p class="reel__blurb">A full team identity and two generations of pro jersey. The mark is a single continuous stroke so it survives embroidery, a stream corner and a circular avatar without redrawing. Sleeves carry the sponsor lock-ups; the hex field is a print pattern, not a texture.</p>
+        </div>
+        <dl class="slate">
+          <div><dt>Client</dt><dd>Specter Esports</dd></div>
+          <div><dt>Scope</dt><dd>Mark, jersey, key art</dd></div>
+          <div><dt>Partners</dt><dd>Glytch, Cinch Gaming</dd></div>
+          <div><dt>Date</dt><dd>2023 &ndash; 2024</dd></div>
+          <div><dt>Output</dt><dd><b>Cut &amp; sew + digital</b></dd></div>
+          <div><dt>Pieces</dt><dd>6 shown</dd></div>
+        </dl>
+      </div>
+      <div class="grid">
+        <button class="frame frame--contain g2" data-lb="d01" style="aspect-ratio:1/1">
+          <img src="img/d01.jpg" alt="The Specter Esports primary mark, a single continuous stroke forming an S" loading="lazy">
+          <span class="cap">Primary mark</span>
+        </button>
+        <button class="frame frame--contain g2" data-lb="d03" style="aspect-ratio:1/1">
+          <img src="img/d03.jpg" alt="Teal and black pro jersey, front, with triangular print field" loading="lazy">
+          <span class="cap">Jersey I &mdash; front</span>
+        </button>
+        <button class="frame frame--contain g2" data-lb="d04" style="aspect-ratio:971/1200">
+          <img src="img/d04.jpg" alt="Jersey back showing gamertag and number treatment" loading="lazy">
+          <span class="cap">Jersey II &mdash; back, gamertag</span>
+        </button>
+        <button class="frame frame--contain g2" data-lb="d05" style="aspect-ratio:880/1200">
+          <img src="img/d05.jpg" alt="Hexagonal print pattern laid out on a jersey template" loading="lazy">
+          <span class="cap">Hex print field</span>
+        </button>
+        <button class="frame frame--contain g2" data-lb="d06" style="aspect-ratio:1/1">
+          <img src="img/d06.jpg" alt="The Glytch Energy cat logo" loading="lazy">
+          <span class="cap">Glytch Energy &mdash; partner lock-up</span>
+        </button>
+        <button class="frame frame--contain g2" data-lb="d02" style="aspect-ratio:1300/867">
+          <img src="img/d02.jpg" alt="Cinch Gaming logo in red and black" loading="lazy">
+          <span class="cap">Cinch Gaming &mdash; partner lock-up</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- Rebirth -->
+    <section class="reel">
+      <div class="reel__top">
+        <div>
+          <p class="eyebrow">Apparel &amp; campaign</p>
+          <h3 class="reel__title">Rebirth Apparel</h3>
+          <p class="reel__blurb">Cut-and-sew jerseys and drop campaigns for an apparel label serving competitive teams. The <em>Outlast</em> tournament ran off one mascot &mdash; a hooded reaper &mdash; extended into two colourways, a mousepad print file, and the end card the broadcast closed on.</p>
+        </div>
+        <dl class="slate">
+          <div><dt>Client</dt><dd>Rebirth Apparel</dd></div>
+          <div><dt>Scope</dt><dd>Jersey, mascot, drop art</dd></div>
+          <div><dt>Campaign</dt><dd>Outlast tournament</dd></div>
+          <div><dt>Date</dt><dd>2022 &ndash; 2023</dd></div>
+          <div><dt>Output</dt><dd><b>Print + broadcast</b></dd></div>
+          <div><dt>Pieces</dt><dd>5 shown</dd></div>
+        </dl>
+      </div>
+      <div class="grid">
+        <button class="frame frame--contain g2" data-lb="e01" style="aspect-ratio:1/1">
+          <img src="img/e01.jpg" alt="White Outlast jersey with a hooded reaper printed across the front" loading="lazy">
+          <span class="cap">Outlast jersey &mdash; light colourway</span>
+        </button>
+        <button class="frame frame--contain g2" data-lb="e02" style="aspect-ratio:1/1">
+          <img src="img/e02.jpg" alt="Black and purple Outlast jersey" loading="lazy">
+          <span class="cap">Outlast jersey &mdash; dark colourway</span>
+        </button>
+        <button class="frame frame--contain g2" data-lb="e05" style="aspect-ratio:1/1">
+          <img src="img/e05.jpg" alt="The Outlast reaper mascot mark" loading="lazy">
+          <span class="cap">Reaper mascot &mdash; source mark</span>
+        </button>
+        <button class="frame frame--contain g3" data-lb="e03" style="aspect-ratio:1600/900">
+          <img src="img/e03.jpg" alt="Merch drop announcement laying out hoodies, tees, hats and a mug" loading="lazy">
+          <span class="cap">Collaboration drop &mdash; announcement layout</span>
+        </button>
+        <button class="frame frame--contain g3" data-lb="e06" style="aspect-ratio:1400/622">
+          <img src="img/e06.jpg" alt="Mousepad print file showing a dark treeline scene" loading="lazy">
+          <span class="cap">Mousepad print file</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- NoiZii -->
+    <section class="reel">
+      <div class="reel__top">
+        <div>
+          <p class="eyebrow">Identity &amp; campaign</p>
+          <h3 class="reel__title">NoiZii Esports</h3>
+          <p class="reel__blurb">Identity and the broadcast package around it: roster reveals with sponsor lock-ups, a topographic key-art system in magenta, channel art and the &ldquo;be right back&rdquo; frame that carries a stream through its dead air.</p>
+        </div>
+        <dl class="slate">
+          <div><dt>Client</dt><dd>NoiZii Esports</dd></div>
+          <div><dt>Scope</dt><dd>Identity, key art, stream</dd></div>
+          <div><dt>Title</dt><dd>Call of Duty</dd></div>
+          <div><dt>Date</dt><dd>2023 &ndash; 2024</dd></div>
+          <div><dt>Output</dt><dd><b>Broadcast package</b></dd></div>
+          <div><dt>Pieces</dt><dd>6 shown</dd></div>
+        </dl>
+      </div>
+      <div class="grid">
+        <button class="frame frame--contain full" data-lb="n05" style="aspect-ratio:1500/844">
+          <img src="img/n05.jpg" alt="Roster reveal graphic introducing four players with sponsor logos beneath" loading="lazy">
+          <span class="cap">Roster reveal &mdash; four players, five sponsor lock-ups</span>
+        </button>
+        <button class="frame frame--contain g3" data-lb="n06" style="aspect-ratio:1500/844">
+          <img src="img/n06.jpg" alt="Magenta topographic channel banner with the NoiZii mark" loading="lazy">
+          <span class="cap">Channel art &mdash; topographic system</span>
+        </button>
+        <button class="frame frame--contain g3" data-lb="n07" style="aspect-ratio:1300/731">
+          <img src="img/n07.jpg" alt="Dark orange key art wallpaper themed around Call of Duty" loading="lazy">
+          <span class="cap">Title key art</span>
+        </button>
+        <button class="frame frame--contain g2" data-lb="n02" style="aspect-ratio:1/1">
+          <img src="img/n02.jpg" alt="The NoiZii monogram set in a circle on magenta" loading="lazy">
+          <span class="cap">Monogram &mdash; avatar build</span>
+        </button>
+        <button class="frame frame--contain g2" data-lb="n01" style="aspect-ratio:1600/900">
+          <img src="img/n01.jpg" alt="Be right back broadcast frame reading NoiZii Esports will return" loading="lazy">
+          <span class="cap">&ldquo;Will return&rdquo; broadcast frame</span>
+        </button>
+        <button class="frame frame--contain g2" data-lb="n03" style="aspect-ratio:800/320">
+          <img src="img/n03.jpg" alt="Colourful community banner for a partnered creator" loading="lazy">
+          <span class="cap">Creator banner</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- Vivint -->
+    <section class="reel">
+      <div class="reel__top">
+        <div>
+          <p class="eyebrow">Internal brand extension</p>
+          <h3 class="reel__title">Vivint</h3>
+          <p class="reel__blurb">Concept apparel worked up inside the company toolkit &mdash; taking a corporate identity built for door hangers and app screens and asking what it looks like on a garment. The hex motif is lifted from the product iconography rather than invented.</p>
+        </div>
+        <dl class="slate">
+          <div><dt>Client</dt><dd>Vivint Home Security</dd></div>
+          <div><dt>Scope</dt><dd>Concept apparel</dd></div>
+          <div><dt>Context</dt><dd>Internal &mdash; recognition</dd></div>
+          <div><dt>Date</dt><dd>2025</dd></div>
+          <div><dt>Basis</dt><dd><b>Vivint brand toolkit</b></dd></div>
+          <div><dt>Pieces</dt><dd>2 shown</dd></div>
+        </dl>
+      </div>
+      <div class="grid">
+        <button class="frame frame--contain g3" data-lb="v01" style="aspect-ratio:1/1">
+          <img src="img/v01.jpg" alt="Concept jersey using the Vivint hex motif in orange on black" loading="lazy">
+          <span class="cap">Hex motif colourway</span>
+        </button>
+        <button class="frame frame--contain g3" data-lb="v02" style="aspect-ratio:1/1">
+          <img src="img/v02.jpg" alt="Concept jersey in a dark gradient with circuit detailing" loading="lazy">
+          <span class="cap">Circuit colourway</span>
+        </button>
+      </div>
+    </section>
+  </div>
+</div>
+
+<!-- ============================== CRAFT ============================== -->
+<div class="shell">
+  <div class="sectionhead">
+    <p class="eyebrow"><span class="tick">&#9679;</span> Capability</p>
+    <h2 class="h-section">What I actually do</h2>
+  </div>
+
+  <div class="cols cols--3">
+    <div class="craft">
+      <h3>Stills</h3>
+      <ul>
+        <li>Editorial &amp; executive portraiture</li>
+        <li>Wedding and full-day event coverage</li>
+        <li>Product and e-commerce cut-outs</li>
+        <li>Apparel and lifestyle campaign</li>
+        <li>Documentary and session work</li>
+        <li>Retouching, colour grading, culling at volume</li>
+      </ul>
+    </div>
+    <div class="craft">
+      <h3>Motion</h3>
+      <ul>
+        <li>Short-form social edits</li>
+        <li>Multi-camera and multi-source assembly</li>
+        <li>Motion graphics and animated GIF</li>
+        <li>Logo stingers and broadcast transitions</li>
+        <li>Transcoding, proxy workflow, asset management</li>
+        <li>Cutting to a director&rsquo;s brief and holding it</li>
+      </ul>
+    </div>
+    <div class="craft">
+      <h3>Brand</h3>
+      <ul>
+        <li>Identity systems and mark design</li>
+        <li>Brand guidelines and asset kits</li>
+        <li>Cut-and-sew apparel to print spec</li>
+        <li>Campaign key art and drop layouts</li>
+        <li>Stream packaging &mdash; overlays, panels, banners</li>
+        <li>Adobe CC end to end: Ps, Ai, Pr, Ae, Lr, Me</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="cols cols--2">
+    <div>
+      <p class="eyebrow" style="margin-bottom:1.25rem;">Work history</p>
+      <ul class="history">
+        <li class="is-creative">
+          <span class="when">Apr &ndash; Dec 2022</span>
+          <p class="what"><strong>Marketing Video Editor</strong><span>OpticalFPV, LLC &mdash; remote. Short-form video, motion graphics and animated GIFs for social; organised and transcoded raw footage from multiple cameras into a managed asset library; delivered to review on schedule.</span></p>
+        </li>
+        <li class="is-creative">
+          <span class="when">Prior</span>
+          <p class="what"><strong>Digital Content Editor</strong><span>IR Productions &mdash; remote.</span></p>
+        </li>
+        <li class="is-creative">
+          <span class="when">2018 &ndash; present</span>
+          <p class="what"><strong>Independent &mdash; AJ42 Productions</strong><span>Photography, video and brand design under my own name. Clients listed below.</span></p>
+        </li>
+        <li>
+          <span class="when">Apr 2025 &ndash; now</span>
+          <p class="what"><strong>Field Ops Scheduling Pro 2</strong><span>Vivint Home Security &mdash; remote.</span></p>
+        </li>
+        <li>
+          <span class="when">2024 &ndash; 2025</span>
+          <p class="what"><strong>Tier 3 Technical Support Specialist</strong><span>Vivint Home Security &mdash; remote.</span></p>
+        </li>
+        <li>
+          <span class="when">2022 &ndash; 2024</span>
+          <p class="what"><strong>Account Services Specialist</strong><span>Vivint Home Security &mdash; remote.</span></p>
+        </li>
+        <li>
+          <span class="when">2016 &ndash; 2019</span>
+          <p class="what"><strong>BBA, Marketing &amp; Communications</strong><span>Radford University, Radford, VA.</span></p>
+        </li>
+      </ul>
+    </div>
+
+    <div>
+      <p class="eyebrow" style="margin-bottom:1.25rem;">Brands I&rsquo;ve made work for</p>
+      <ul class="roster">
+        <li>Specter Esports</li>
+        <li>Rebirth Apparel</li>
+        <li>NoiZii Esports</li>
+        <li>Glytch Energy</li>
+        <li>Cinch Gaming</li>
+        <li>Urgent Fury</li>
+        <li>Zenni Gaming</li>
+        <li>117 Records</li>
+        <li>Cabrisses Co.</li>
+        <li>OpticalFPV</li>
+        <li>IR Productions</li>
+        <li>Vivint</li>
+        <li>Phantom Company</li>
+        <li>Mind of Rob</li>
+        <li>SIN Gaming</li>
+      </ul>
+      <p class="note" style="margin-top:1.5rem;color:var(--dim);font-size:.9375rem;max-width:30rem;">Commissioned and collaborative work across identity, apparel, broadcast packaging and photography. Full case studies and moving work available on request.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ============================== CONTACT ============================== -->
+<section class="contact">
+  <div class="shell">
+    <p class="eyebrow" style="margin-bottom:1.5rem;"><span class="tick">&#9679;</span> Next</p>
+    <p class="contact__big">Tell me the<br>room and the<br>deadline.</p>
+    <p class="lede" style="margin-bottom:clamp(2rem,4vw,3rem);">Available for editorial and commercial commissions, event coverage, edit work and brand systems. Based in Naples, Florida &mdash; happy to travel, happy to work remote.</p>
+
+    <form class="enquiry" id="enquiry" novalidate>
+      <div class="enquiry__row">
+        <p class="field">
+          <label for="f-name">Your name</label>
+          <input id="f-name" name="name" type="text" autocomplete="name" required>
+          <span class="field__err" id="e-name"></span>
+        </p>
+        <p class="field">
+          <label for="f-email">Email</label>
+          <input id="f-email" name="email" type="email" autocomplete="email" inputmode="email" required>
+          <span class="field__err" id="e-email"></span>
+        </p>
+      </div>
+
+      <div class="enquiry__row">
+        <p class="field">
+          <label for="f-kind">What&rsquo;s the job</label>
+          <select id="f-kind" name="kind">
+            <option>Wedding or event</option>
+            <option>Editorial or portrait</option>
+            <option>Commercial or product</option>
+            <option>Video edit or motion</option>
+            <option>Brand identity or apparel</option>
+            <option>Something else</option>
+          </select>
+        </p>
+        <p class="field">
+          <label for="f-when">Date or deadline</label>
+          <input id="f-when" name="when" type="text" placeholder="14 March, or flexible">
+        </p>
+      </div>
+
+      <p class="field">
+        <label for="f-msg">The brief</label>
+        <textarea id="f-msg" name="message" rows="5" required placeholder="Where it is, roughly what you need, and anything about the room or the light I should know."></textarea>
+        <span class="field__err" id="e-msg"></span>
+      </p>
+
+      <div class="enquiry__foot">
+        <button type="submit" class="btn btn--primary" id="f-send">Send enquiry</button>
+        <button type="button" class="btn btn--ghost" id="f-copy" hidden>Copy it instead</button>
+      </div>
+
+      <p class="enquiry__status" id="f-status" role="status" aria-live="polite"></p>
+    </form>
+  </div>
+</section>
+
+<div class="shell">
+  <div class="colophon">
+    <span>&copy; Brendin Eaton &mdash; AJ42 Productions</span>
+    <span>Naples, Florida</span>
+    <span>All images shot &amp; graded by me</span>
+  </div>
+</div>
+
+<!-- ============================== LIGHTBOX ============================== -->
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Image viewer">
+  <button class="lb__close" id="lbClose" aria-label="Close viewer">&#10005;</button>
+  <button class="lb__prev" id="lbPrev" aria-label="Previous image">&#8592;</button>
+  <button class="lb__next" id="lbNext" aria-label="Next image">&#8594;</button>
+  <div class="lb__stage">
+    <img class="lb__img" id="lbImg" alt="">
+    <p class="lb__meta"><span class="n" id="lbNum"></span><b id="lbCap"></b></p>
+  </div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ---------- reveal on scroll ---------- */
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var rvs = Array.prototype.slice.call(document.querySelectorAll(".rv"));
+  if (reduce || !("IntersectionObserver" in window)) {
+    rvs.forEach(function(el){ el.classList.add("in"); });
+  } else {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); }
+      });
+    }, {rootMargin:"0px 0px -8% 0px", threshold:0.05});
+    rvs.forEach(function(el){ io.observe(el); });
+  }
+
+  /* ---------- lightbox ---------- */
+  var frames = Array.prototype.slice.call(document.querySelectorAll(".frame"));
+  var lb     = document.getElementById("lb");
+  var lbImg  = document.getElementById("lbImg");
+  var lbCap  = document.getElementById("lbCap");
+  var lbNum  = document.getElementById("lbNum");
+  var idx = -1, lastFocus = null;
+
+  function capOf(btn){
+    var c = btn.querySelector(".cap");
+    return c ? c.textContent.trim() : "";
+  }
+
+  function show(i){
+    if (i < 0) i = frames.length - 1;
+    if (i >= frames.length) i = 0;
+    idx = i;
+    var btn = frames[idx];
+    var img = btn.querySelector("img");
+    lbImg.src = img.currentSrc || img.src;
+    lbImg.alt = img.alt || "";
+    lbCap.textContent = capOf(btn);
+    lbNum.textContent = String(idx + 1).padStart(2, "0") + " / " + String(frames.length).padStart(2, "0");
+  }
+
+  function open(i){
+    lastFocus = document.activeElement;
+    show(i);
+    lb.setAttribute("data-open", "true");
+    document.body.classList.add("lb-open");
+    document.getElementById("lbClose").focus();
+  }
+
+  function close(){
+    lb.setAttribute("data-open", "false");
+    document.body.classList.remove("lb-open");
+    lbImg.removeAttribute("src");
+    if (lastFocus && lastFocus.focus) lastFocus.focus();
+  }
+
+  frames.forEach(function(btn, i){
+    btn.setAttribute("type", "button");
+    btn.addEventListener("click", function(){ open(i); });
+  });
+
+  document.getElementById("lbClose").addEventListener("click", close);
+  document.getElementById("lbPrev").addEventListener("click", function(){ show(idx - 1); });
+  document.getElementById("lbNext").addEventListener("click", function(){ show(idx + 1); });
+  lb.addEventListener("click", function(e){ if (e.target === lb) close(); });
+
+  /* ==========================================================
+     ENQUIRY FORM
+     ----------------------------------------------------------
+     ENDPOINT is the only line to change to get true server-side
+     send. Leave it empty and the form composes the message and
+     hands it to the visitor's mail app (with a clipboard
+     fallback if no mail app answers). Set it to a form-service
+     URL — Formspree, Web3Forms, FormSubmit — and the form POSTs
+     JSON there instead, with the same UI.
+     NOTE: a POST only works where the page is hosted normally.
+     Inside the claude.ai artifact viewer the CSP blocks calls to
+     other hosts, so that build always uses the mail-app path.
+     ========================================================== */
+  var ENDPOINT = "";
+  var INBOX    = "brendinlee@gmail.com";
+
+  var form = document.getElementById("enquiry");
+  if (form) {
+    var statusEl = document.getElementById("f-status");
+    var sendBtn  = document.getElementById("f-send");
+    var copyBtn  = document.getElementById("f-copy");
+    var lastText = "";
+
+    function setStatus(msg, kind){
+      statusEl.textContent = msg;
+      statusEl.classList.remove("is-good","is-bad");
+      if (kind) statusEl.classList.add(kind);
+    }
+
+    function fieldOf(id){ return document.getElementById(id).closest(".field"); }
+
+    function flag(id, errId, msg){
+      fieldOf(id).classList.add("is-bad");
+      document.getElementById(errId).textContent = msg;
+    }
+    function unflag(id, errId){
+      fieldOf(id).classList.remove("is-bad");
+      document.getElementById(errId).textContent = "";
+    }
+
+    function validate(){
+      var ok = true;
+      var name = document.getElementById("f-name").value.trim();
+      var mail = document.getElementById("f-email").value.trim();
+      var msg  = document.getElementById("f-msg").value.trim();
+
+      if (!name) { flag("f-name","e-name","Tell me who you are"); ok = false; } else unflag("f-name","e-name");
+      /* deliberately loose: something@something.something */
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(mail)) { flag("f-email","e-email","Check this address"); ok = false; } else unflag("f-email","e-email");
+      if (msg.length < 10) { flag("f-msg","e-msg","A sentence or two, at least"); ok = false; } else unflag("f-msg","e-msg");
+      return ok;
+    }
+
+    function payload(){
+      return {
+        name:    document.getElementById("f-name").value.trim(),
+        email:   document.getElementById("f-email").value.trim(),
+        kind:    document.getElementById("f-kind").value,
+        when:    document.getElementById("f-when").value.trim(),
+        message: document.getElementById("f-msg").value.trim()
+      };
+    }
+
+    function asText(d){
+      return "From:     " + d.name +
+           "\nEmail:    " + d.email +
+           "\nJob:      " + d.kind +
+           "\nTiming:   " + (d.when || "not given") +
+           "\n\n" + d.message + "\n";
+    }
+
+    /* clear the error the moment they start fixing it */
+    [["f-name","e-name"],["f-email","e-email"],["f-msg","e-msg"]].forEach(function(pair){
+      document.getElementById(pair[0]).addEventListener("input", function(){
+        if (fieldOf(pair[0]).classList.contains("is-bad")) unflag(pair[0], pair[1]);
+      });
+    });
+
+    copyBtn.addEventListener("click", function(){
+      var done = function(){ setStatus("Copied. Paste it to " + INBOX, "is-good"); };
+      var fail = function(){ setStatus("Couldn't copy — select the text and copy manually", "is-bad"); };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(INBOX + "\n\n" + lastText).then(done).catch(fail);
+      } else {
+        var ta = document.createElement("textarea");
+        ta.value = INBOX + "\n\n" + lastText;
+        ta.style.cssText = "position:fixed;opacity:0";
+        document.body.appendChild(ta); ta.select();
+        try { document.execCommand("copy"); done(); } catch (e) { fail(); }
+        ta.remove();
+      }
+    });
+
+    form.addEventListener("submit", function(e){
+      e.preventDefault();
+      if (!validate()) { setStatus("A couple of fields need another look", "is-bad"); return; }
+
+      var d = payload();
+      lastText = asText(d);
+      var subject = "Portfolio enquiry — " + d.kind + " — " + d.name;
+
+      if (ENDPOINT) {
+        sendBtn.disabled = true;
+        setStatus("Sending…");
+        fetch(ENDPOINT, {
+          method: "POST",
+          headers: { "Content-Type": "application/json", "Accept": "application/json" },
+          body: JSON.stringify({ _subject: subject, name: d.name, email: d.email, kind: d.kind, when: d.when, message: d.message })
+        }).then(function(res){
+          if (!res.ok) throw new Error(res.status);
+          form.reset();
+          setStatus("Sent. I'll come back to you within a day or two.", "is-good");
+          copyBtn.hidden = true;
+        }).catch(function(){
+          setStatus("That didn't go through — copy it and email me directly", "is-bad");
+          copyBtn.hidden = false;
+        }).then(function(){ sendBtn.disabled = false; });
+        return;
+      }
+
+      /* no endpoint: hand a fully-written message to their mail app */
+      var href = "mailto:" + INBOX +
+                 "?subject=" + encodeURIComponent(subject) +
+                 "&body="    + encodeURIComponent(lastText);
+
+      /* a real anchor click survives sandboxing better than location.href */
+      var a = document.createElement("a");
+      a.href = href;
+      a.target = "_blank";
+      a.rel = "noopener";
+      a.style.display = "none";
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+
+      setStatus("Opening your email app — press send there.", "is-good");
+      copyBtn.hidden = false;
+    });
+  }
+
+  document.addEventListener("keydown", function(e){
+    if (lb.getAttribute("data-open") !== "true") return;
+    if (e.key === "Escape")     { close(); }
+    else if (e.key === "ArrowLeft")  { show(idx - 1); }
+    else if (e.key === "ArrowRight") { show(idx + 1); }
+    else if (e.key === "Tab") {
+      /* keep focus inside the dialog */
+      var f = lb.querySelectorAll("button");
+      var first = f[0], last = f[f.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    }
+  });
+})();
+</script>
+
+</body>
+</html>
