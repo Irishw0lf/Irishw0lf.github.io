@@ -1465,7 +1465,7 @@ body.lb-open{overflow:hidden;}
      Inside the claude.ai artifact viewer the CSP blocks calls to
      other hosts, so that build always uses the mail-app path.
      ========================================================== */
-  var ENDPOINT = "";
+  var ENDPOINT = "https://formsubmit.co/ajax/brendinlee@gmail.com";
   var INBOX    = "brendinlee@gmail.com";
 
   var form = document.getElementById("enquiry");
@@ -1553,6 +1553,24 @@ body.lb-open{overflow:hidden;}
       lastText = asText(d);
       var subject = "Portfolio enquiry — " + d.kind + " — " + d.name;
 
+      /* fallback: hand a fully-written message to their mail app */
+      function handOffToMailApp(note){
+        var href = "mailto:" + INBOX +
+                   "?subject=" + encodeURIComponent(subject) +
+                   "&body="    + encodeURIComponent(lastText);
+        /* a real anchor click survives sandboxing better than location.href */
+        var a = document.createElement("a");
+        a.href = href;
+        a.target = "_blank";
+        a.rel = "noopener";
+        a.style.display = "none";
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        setStatus(note, "is-good");
+        copyBtn.hidden = false;
+      }
+
       if (ENDPOINT) {
         sendBtn.disabled = true;
         setStatus("Sending…");
@@ -1562,33 +1580,19 @@ body.lb-open{overflow:hidden;}
           body: JSON.stringify({ _subject: subject, name: d.name, email: d.email, kind: d.kind, when: d.when, message: d.message })
         }).then(function(res){
           if (!res.ok) throw new Error(res.status);
+          return res.json().catch(function(){ return {}; });
+        }).then(function(){
           form.reset();
           setStatus("Sent. I'll come back to you within a day or two.", "is-good");
           copyBtn.hidden = true;
         }).catch(function(){
-          setStatus("That didn't go through — copy it and email me directly", "is-bad");
-          copyBtn.hidden = false;
+          /* blocked or offline — don't dead-end, use the mail app instead */
+          handOffToMailApp("Opening your email app — press send there.");
         }).then(function(){ sendBtn.disabled = false; });
         return;
       }
 
-      /* no endpoint: hand a fully-written message to their mail app */
-      var href = "mailto:" + INBOX +
-                 "?subject=" + encodeURIComponent(subject) +
-                 "&body="    + encodeURIComponent(lastText);
-
-      /* a real anchor click survives sandboxing better than location.href */
-      var a = document.createElement("a");
-      a.href = href;
-      a.target = "_blank";
-      a.rel = "noopener";
-      a.style.display = "none";
-      document.body.appendChild(a);
-      a.click();
-      a.remove();
-
-      setStatus("Opening your email app — press send there.", "is-good");
-      copyBtn.hidden = false;
+      handOffToMailApp("Opening your email app — press send there.");
     });
   }
 
