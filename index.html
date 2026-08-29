@@ -3,13 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Brendin Eaton - photographer, videographer and brand designer. Naples, Florida.">
+<meta name="description" content="Brendin Eaton - photographer, videographer and brand designer. East Coast.">
 <meta name="author" content="Brendin Eaton">
 <meta property="og:title" content="Brendin Eaton">
-<meta property="og:description" content="Photography, motion and brand design. Naples, Florida.">
+<meta property="og:description" content="Photography, motion and brand design. East Coast.">
 <meta property="og:type" content="website">
 <meta property="og:image" content="img/w01.jpg">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230A0B0D'/%3E%3Ctext x='16' y='23' font-family='Georgia,serif' font-size='18' fill='%23E0A040' text-anchor='middle'%3EB%3C/text%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230A0B0D'/%3E%3Ctext x='16' y='23' font-family='Georgia,serif' font-size='18' fill='%236178F2' text-anchor='middle'%3EB%3C/text%3E%3C/svg%3E">
 <style>html{background:#0A0B0D;}*{margin:0;}</style>
 </head>
 <body><title>Brendin Eaton</title>
@@ -35,8 +35,8 @@
   --dim:#83868D;         /* cool grey, secondary */
   --dimmer:#787B82;      /* tertiary — still clears AA at 10–11px */
   --hairtone:#4E5158;    /* decorative marks only, never text */
-  --tungsten:#E0A040;    /* accent, pulled from his own uplighting */
-  --tungsten-soft:rgba(224,160,64,.14);
+  --accent:#6178F2;      /* accent — Brendin's navy #000654, lifted to clear 4.5:1 on black */
+  --accent-soft:rgba(97,120,242,.14);
   --specter:#2BB3A3;     /* used ONLY where it is the client's real colour */
 
   --measure:34rem;
@@ -79,13 +79,13 @@ body::before{
   100%{transform:translate(0,0)}
 }
 
-::selection{background:var(--tungsten);color:var(--void);}
+::selection{background:var(--accent);color:var(--void);}
 
 a{color:inherit;}
 img{display:block;max-width:100%;}
 
 :focus-visible{
-  outline:2px solid var(--tungsten);
+  outline:2px solid var(--accent);
   outline-offset:3px;
   border-radius:2px;
 }
@@ -100,7 +100,7 @@ img{display:block;max-width:100%;}
   color:var(--dim);
   margin:0;
 }
-.eyebrow .tick{color:var(--tungsten);}
+.eyebrow .tick{color:var(--accent);}
 
 .h-section{
   font-family:var(--f-display);
@@ -163,7 +163,7 @@ img{display:block;max-width:100%;}
   content:"";position:absolute;inset:0;
   background:
     linear-gradient(to top,var(--void) 4%,rgba(10,11,13,.72) 38%,rgba(10,11,13,.34) 70%,rgba(10,11,13,.68) 100%),
-    radial-gradient(120% 80% at 70% 30%,rgba(224,160,64,.10),transparent 60%);
+    radial-gradient(120% 80% at 70% 30%,rgba(97,120,242,.10),transparent 60%);
 }
 
 .titlecard__inner{
@@ -200,7 +200,7 @@ img{display:block;max-width:100%;}
   text-transform:uppercase;
   margin:0;
 }
-.titlerow .role em{font-style:normal;color:var(--tungsten);}
+.titlerow .role em{font-style:normal;color:var(--accent);}
 
 .scrollcue{
   font-family:var(--f-mono);
@@ -210,7 +210,7 @@ img{display:block;max-width:100%;}
   text-decoration:none;
 }
 .scrollcue::after{
-  content:"";width:2.5rem;height:1px;background:var(--tungsten);
+  content:"";width:2.5rem;height:1px;background:var(--accent);
   transform-origin:left;animation:cue 2.4s ease-in-out infinite;
 }
 @keyframes cue{0%,100%{transform:scaleX(.35)}50%{transform:scaleX(1)}}
@@ -238,7 +238,7 @@ img{display:block;max-width:100%;}
   color:var(--paper);
 }
 .statement p:last-child{margin-bottom:0;color:var(--paper-2);font-size:clamp(1.05rem,1.7vw,1.25rem);}
-.statement em{font-style:italic;color:var(--tungsten);}
+.statement em{font-style:italic;color:var(--accent);}
 
 /* ---------- figures strip ---------- */
 .figures{
@@ -343,7 +343,7 @@ img{display:block;max-width:100%;}
 }
 .slate dt{color:var(--dim);text-transform:uppercase;letter-spacing:.14em;margin:0;}
 .slate dd{margin:0;color:var(--paper-2);}
-.slate dd b{color:var(--tungsten);font-weight:500;}
+.slate dd b{color:var(--accent);font-weight:500;}
 
 /* ---------- grids ---------- */
 .grid{
@@ -387,7 +387,7 @@ img{display:block;max-width:100%;}
   transition:box-shadow .35s ease;
 }
 .frame:hover img,.frame:focus-visible img{transform:scale(1.035);}
-.frame:hover::after,.frame:focus-visible::after{box-shadow:inset 0 0 0 1px rgba(224,160,64,.55);}
+.frame:hover::after,.frame:focus-visible::after{box-shadow:inset 0 0 0 1px rgba(97,120,242,.55);}
 .frame .cap{
   position:absolute;
   left:0;right:0;bottom:0;
@@ -436,7 +436,7 @@ img{display:block;max-width:100%;}
 .craft h3{
   font-family:var(--f-mono);
   font-size:.6875rem;letter-spacing:.16em;text-transform:uppercase;
-  color:var(--tungsten);
+  color:var(--accent);
   margin:0 0 1rem;
   padding-bottom:.65rem;
   border-bottom:var(--rule);
@@ -484,7 +484,7 @@ img{display:block;max-width:100%;}
 .history .what span{
   display:block;font-size:.9375rem;color:var(--dim);
 }
-.history li.is-creative .what strong{color:var(--tungsten);}
+.history li.is-creative .what strong{color:var(--accent);}
 
 /* ---------- client roster ---------- */
 .roster{
@@ -579,12 +579,12 @@ img{display:block;max-width:100%;}
 .field select:focus,
 .field textarea:focus{
   outline:none;
-  border-color:var(--tungsten);
+  border-color:var(--accent);
   background:var(--panel-2);
 }
 .field input:focus-visible,
 .field select:focus-visible,
-.field textarea:focus-visible{outline:2px solid var(--tungsten);outline-offset:2px;}
+.field textarea:focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
 
 .field__err{
   font-family:var(--f-mono);
@@ -615,11 +615,11 @@ img{display:block;max-width:100%;}
   cursor:pointer;
   transition:background-color .2s ease,color .2s ease,border-color .2s ease;
 }
-.btn--primary{background:var(--tungsten);color:var(--void);}
+.btn--primary{background:var(--accent);color:var(--void);}
 .btn--primary:hover{background:var(--paper);}
 .btn--primary:disabled{background:var(--hairtone);color:var(--panel);cursor:default;}
 .btn--ghost{background:transparent;color:var(--paper-2);border-color:var(--line);}
-.btn--ghost:hover{border-color:var(--tungsten);color:var(--tungsten);}
+.btn--ghost:hover{border-color:var(--accent);color:var(--accent);}
 .btn[hidden]{display:none;}
 
 .enquiry__status{
@@ -631,7 +631,7 @@ img{display:block;max-width:100%;}
   text-transform:uppercase;
   color:var(--dim);
 }
-.enquiry__status.is-good{color:var(--tungsten);}
+.enquiry__status.is-good{color:var(--accent);}
 .enquiry__status.is-bad{color:#E8746A;}
 
 .colophon{
@@ -676,7 +676,7 @@ img{display:block;max-width:100%;}
   display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;
 }
 .lb__meta b{color:var(--paper-2);font-weight:400;}
-.lb__meta .n{color:var(--tungsten);font-variant-numeric:tabular-nums;}
+.lb__meta .n{color:var(--accent);font-variant-numeric:tabular-nums;}
 .lb button{
   position:absolute;
   background:transparent;
@@ -689,7 +689,7 @@ img{display:block;max-width:100%;}
   cursor:pointer;
   transition:border-color .2s ease,color .2s ease;
 }
-.lb button:hover{border-color:var(--tungsten);color:var(--tungsten);}
+.lb button:hover{border-color:var(--accent);color:var(--accent);}
 .lb__close{top:clamp(.75rem,3vw,1.75rem);right:clamp(.75rem,3vw,1.75rem);}
 .lb__prev{left:clamp(.5rem,2vw,1.75rem);top:50%;transform:translateY(-50%);}
 .lb__next{right:clamp(.5rem,2vw,1.75rem);top:50%;transform:translateY(-50%);}
@@ -724,7 +724,7 @@ body.lb-open{overflow:hidden;}
   </div>
 
   <div class="titlecard__inner shell">
-    <p class="eyebrow"><span class="tick">&#9679;</span> Naples, Florida &nbsp;/&nbsp; Stills, Motion &amp; Brand &nbsp;/&nbsp; Open to commissions</p>
+    <p class="eyebrow"><span class="tick">&#9679;</span> East Coast &nbsp;/&nbsp; Stills, Motion &amp; Brand &nbsp;/&nbsp; Open to commissions</p>
 
     <h1 class="wordmark">
       <span>Brendin</span>
@@ -1265,7 +1265,7 @@ body.lb-open{overflow:hidden;}
         </li>
         <li class="is-creative">
           <span class="when">2018 &ndash; present</span>
-          <p class="what"><strong>Independent &mdash; AJ42 Productions</strong><span>Photography, video and brand design under my own name. Clients listed below.</span></p>
+          <p class="what"><strong>Independent &mdash; IrishW0lf Productions</strong><span>Photography, video and brand design under my own name. Clients listed below.</span></p>
         </li>
         <li>
           <span class="when">Apr 2025 &ndash; now</span>
@@ -1315,7 +1315,7 @@ body.lb-open{overflow:hidden;}
   <div class="shell">
     <p class="eyebrow" style="margin-bottom:1.5rem;"><span class="tick">&#9679;</span> Next</p>
     <p class="contact__big">Tell me the<br>room and the<br>deadline.</p>
-    <p class="lede" style="margin-bottom:clamp(2rem,4vw,3rem);">Available for editorial and commercial commissions, event coverage, edit work and brand systems. Based in Naples, Florida &mdash; happy to travel, happy to work remote.</p>
+    <p class="lede" style="margin-bottom:clamp(2rem,4vw,3rem);">Available for editorial and commercial commissions, event coverage, edit work and brand systems. Based on the East Coast &mdash; happy to travel, happy to work remote.</p>
 
     <form class="enquiry" id="enquiry" novalidate>
       <div class="enquiry__row">
@@ -1367,8 +1367,8 @@ body.lb-open{overflow:hidden;}
 
 <div class="shell">
   <div class="colophon">
-    <span>&copy; Brendin Eaton &mdash; AJ42 Productions</span>
-    <span>Naples, Florida</span>
+    <span>&copy; Brendin Eaton &mdash; IrishW0lf Productions</span>
+    <span>East Coast</span>
     <span>All images shot &amp; graded by me</span>
   </div>
 </div>
